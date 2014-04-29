@@ -18,6 +18,7 @@ Bomb::Bomb(sf::Vector2i Pos,int Range)
 	spriten.setPosition((float)Pos.x * 30,(float)Pos.y * 30);
 	spriten.setScale(1,1);
 	Exploded = false;
+	firstRound = false;
 	droprate = 10;
 }
 
@@ -30,7 +31,7 @@ void Bomb::draw(sf::RenderTarget& tgt)
 {
 	if(timeToExplode() == true)
 	{
-		explode(tgt);
+		explode();
 	}
 	else
 		Map::update(sf::Vector2i(((int)spriten.getPosition().x + 15) / 30,((int)spriten.getPosition().y + 15)/30),sf::Vector2i(0,1));
@@ -50,9 +51,7 @@ bool Bomb::timeToExplode()
 	}
 }
 
-bool firstRound = false;
-
-bool Bomb::explode(sf::RenderTarget& tgt)
+bool Bomb::explode()
 {
 	int x = (int)spriten.getPosition().x / 30;
 	int y = (int)spriten.getPosition().y / 30;
