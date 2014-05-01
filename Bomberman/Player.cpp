@@ -33,7 +33,8 @@ void Player::update()
 {
 	if(!death)
 	{
-		if(Map::getBlock(sf::Vector2i(((int)pos.x+15)/30,((int)pos.y+15)/30)) != Block::Ground() && Map::getBlock(sf::Vector2i(((int)pos.x+15)/30,((int)pos.y+15)/30)) != Block::Bomb())
+		if(Map::getBlock(sf::Vector2i(((int)pos.x+15)/30,((int)pos.y+15)/30)) != Block::Ground() &&
+			Map::getBlock(sf::Vector2i(((int)pos.x+15)/30,((int)pos.y+15)/30)) != Block::Bomb())
 		{
 			death=true;
 			Map::newMap();
@@ -50,7 +51,7 @@ void Player::update()
 				range+=1;
 				pos.x += speed;
 			}
-			else if (collision(sf::Vector2f(pos.x + 34,pos.y + boxy )) == 3 && collision(sf::Vector2f(pos.x + 34 ,pos.y + boxY)) == 3 )
+			else if (collision(sf::Vector2f(pos.x + 33,pos.y + boxy )) == 3 && collision(sf::Vector2f(pos.x + 33 ,pos.y + boxY)) == 3 )
 			{
 				Map::update(sf::Vector2i(((int)pos.x + 35 ) / 30, ((int)pos.y+10) / 30),Block::Ground());
 				maxAntalBomber+=1;

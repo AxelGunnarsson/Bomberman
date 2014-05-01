@@ -41,22 +41,22 @@ Map::~Map(void)
 
 void Map::load()
 {
-	ifstream Banan("Bana2.txt");
+	ifstream Reader("Bana2.txt");
 	loadCounter = sf::Vector2i(0, 0);
-	if(Banan.is_open())
+	if(Reader.is_open())
 	{
 		BoxTextur.loadFromFile("Bild.png");
 		Box.setTexture(BoxTextur);
-		while (!Banan.eof())
+		while (!Reader.eof())
 		{
 			string str;
-			Banan >> str;
+			Reader >> str;
 			char x = str[0], y = str[2];
 			if (!isdigit(x) || !isdigit(y))
 				mapMat[loadCounter.x][loadCounter.y] = sf::Vector2i(-1,-1);
 			else
 				mapMat[loadCounter.x][loadCounter.y] = sf::Vector2i(x - '0', y - '0');
-			if (Banan.peek() == '\n')
+			if (Reader.peek() == '\n')
 			{
 				loadCounter.x = 0;
 				loadCounter.y++;
