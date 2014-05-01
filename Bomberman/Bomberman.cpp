@@ -11,7 +11,7 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(390, 390), "BOmberManarDoodle");
+    sf::RenderWindow window(sf::VideoMode(490, 390), "Bomberman");
 	window.setFramerateLimit(60);
 
 	Map::load();

@@ -31,13 +31,14 @@ Player::~Player(void)
 
 void Player::update() 
 {
-	if(Map::getBlock(sf::Vector2i(((int)pos.x+15)/30,((int)pos.y+15)/30)) != Block::Ground() && Map::getBlock(sf::Vector2i(((int)pos.x+15)/30,((int)pos.y+15)/30)) != Block::Bomb())
-	{
-		death=true;
-	}
-
 	if(!death)
 	{
+		if(Map::getBlock(sf::Vector2i(((int)pos.x+15)/30,((int)pos.y+15)/30)) != Block::Ground() && Map::getBlock(sf::Vector2i(((int)pos.x+15)/30,((int)pos.y+15)/30)) != Block::Bomb())
+		{
+			death=true;
+			Map::newMap();
+		}
+
 		if(sf::Keyboard::isKeyPressed(right))
 		{
 			animationPos.y = Right;
@@ -147,8 +148,6 @@ int Player::collision(sf::Vector2f Pos)
 		return AllowedToWalk;
 	else if(Map::getBlock(pos) == Block::Bomb())
 		return AllowedToWalk;
-	//else if(Map::getBlock(pos) == sf::Vector2i(2,1))
-		//return AllowedToWalk;
 	else if(Map::getBlock(pos) == Block::PowerUp1())
 		return PowerUp1;
 	else if(Map::getBlock(pos) == Block::PowerUp2())

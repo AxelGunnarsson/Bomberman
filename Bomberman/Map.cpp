@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Map.h"
+#include "Block.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <fstream>
@@ -70,5 +71,18 @@ void Map::load()
 sf::Vector2i Map::getBlock(sf::Vector2i pos)
 {
 	return mapMat[(int)pos.x][(int)pos.y];
+}
+
+void Map::newMap()
+{
+	for (int x = 1; x < 12; x++)
+	{
+		for (int y = 1; y < 12; y++)
+		{
+			int random = rand() % 5;
+			if(getBlock(sf::Vector2i(x,y)) != Block::Wall() && random == 2)
+				update(sf::Vector2i(x,y),Block::Box());
+		}
+	}
 }
 

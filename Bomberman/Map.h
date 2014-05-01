@@ -8,6 +8,7 @@ public:
 	static int collision(sf::Vector2f); //Ska vara i player föfan
 	static void load();
 	static sf::Vector2i getBlock(sf::Vector2i);
+	static void newMap();
 	~Map(void);
 private:
 
