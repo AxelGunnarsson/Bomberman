@@ -7,52 +7,35 @@
 #include <string>
 using namespace std;
 
-static sf::Texture BlockTextur;
-static sf::Sprite Block;
+static sf::Texture BoxTextur;
+static sf::Sprite Box;
 static sf::Vector2i loadCounter;
 static sf::Vector2i mapMat[13][13];
+static sf::Vector2i Wall;
 
 void Map::draw(sf::RenderTarget& tgt)
 {
+	Wall = sf::Vector2i(0,0);
 	for (int i = 0; i < loadCounter.x; i++)
 	{
 		for (int j = 0; j < loadCounter.y; j++)
 		{
 			if(mapMat[i][j].x != -1 && mapMat[i][j].y != -1)
 			{
-				Block.setPosition((float)i * 30, (float)j * 30);
-				Block.setTextureRect(sf::IntRect(mapMat[i][j].x * 30, mapMat[i][j].y * 30, 30, 30));
-				tgt.draw(Block);
+				Box.setPosition((float)i * 30, (float)j * 30);
+				Box.setTextureRect(sf::IntRect(mapMat[i][j].x * 30, mapMat[i][j].y * 30, 30, 30));
+				tgt.draw(Box);
 			}
 		}
 	}
 }
 void Map::update(sf::Vector2i pos,sf::Vector2i type)
 {
-	mapMat[pos.x][pos.y].x = type.x;
-	mapMat[pos.x][pos.y].y = type.y;
+	mapMat[pos.x][pos.y] = type;
 }
 
 Map::~Map(void)
 {
-}
-
-int Map::collision(sf::Vector2f pos)
-{
-	int posx = ((int)pos.x - (int)pos.x % 30) / 30;
-	int posy = ((int)pos.y - (int)pos.y % 30) / 30;
-
-	if(mapMat[posx][posy] == sf::Vector2i(1,1))
-		return 0;
-	else if(mapMat[posx][posy] == sf::Vector2i(0,1))
-		return 0;
-	else if(mapMat[posx][posy] == sf::Vector2i(2,1))
-		return 0;
-	else if(mapMat[posx][posy] == sf::Vector2i(2,0))
-		return 2;
-	else if(mapMat[posx][posy] == sf::Vector2i(2,2))
-		return 3;
-	return 1;
 }
 
 void Map::load()
@@ -61,8 +44,8 @@ void Map::load()
 	loadCounter = sf::Vector2i(0, 0);
 	if(Banan.is_open())
 	{
-		BlockTextur.loadFromFile("Bild.png");
-		Block.setTexture(BlockTextur);
+		BoxTextur.loadFromFile("Bild.png");
+		Box.setTexture(BoxTextur);
 		while (!Banan.eof())
 		{
 			string str;
@@ -88,3 +71,4 @@ sf::Vector2i Map::getBlock(sf::Vector2i pos)
 {
 	return mapMat[(int)pos.x][(int)pos.y];
 }
+
