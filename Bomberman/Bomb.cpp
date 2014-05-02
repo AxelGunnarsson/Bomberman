@@ -61,7 +61,7 @@ bool Bomb::explode()
 	{
 		Map::update(sf::Vector2i(x,y),Block::BombMiddle());
 
-		for(int yled = 1; yled < range+1; yled ++)
+		for(int yled = 1; yled < range + 1; yled ++)
 		{
 			if(Map::getBlock(sf::Vector2i(x,y - yled)) == Block::Wall() ||
 				Map::getBlock(sf::Vector2i(x,y - yled)) == Block::PowerUp1() || 
@@ -70,8 +70,8 @@ bool Bomb::explode()
 			{
 				if(Map::getBlock(sf::Vector2i(x,y - yled + 1)) == Block::BombMiddle())
 					break;	
-				else
-					Map::update(sf::Vector2i(x,y - yled + 1),Block::BombUp1());
+				Map::update(sf::Vector2i(x,y - yled + 1),Block::BombUp1());
+				break;
 			}
 			else if(Map::getBlock(sf::Vector2i(x,y - yled)) == Block::Box())
 			{
@@ -81,7 +81,7 @@ bool Bomb::explode()
 			else if(Map::getBlock(sf::Vector2i(x,y - yled)) == Block::Ground())
 			{
 				Map::update(sf::Vector2i(x,y - yled),Block::BombUpMid());
-				if(yled = range)
+				if(yled == range)
 					Map::update(sf::Vector2i(x,y - yled),Block::BombUp1());
 			}
 		}
@@ -102,7 +102,7 @@ bool Bomb::explode()
 			else if(Map::getBlock(sf::Vector2i(x,y + yled)) == Block::Ground())
 			{
 				Map::update(sf::Vector2i(x,y + yled),Block::BombDownMid());
-				if(yled = range)
+				if(yled == range)
 					Map::update(sf::Vector2i(x,y + yled),Block::BombDown1());
 			}
 		}
@@ -123,7 +123,7 @@ bool Bomb::explode()
 			else if(Map::getBlock(sf::Vector2i(x - xled,y)) == Block::Ground())
 			{
 				Map::update(sf::Vector2i(x - xled,y),Block::BombLeftMid());
-				if(xled = range)
+				if(xled == range)
 					Map::update(sf::Vector2i(x - xled,y),Block::BombLeft1());
 			}
 		}
@@ -144,7 +144,7 @@ bool Bomb::explode()
 			else if(Map::getBlock(sf::Vector2i(x + xled,y)) == Block::Ground())
 			{
 				Map::update(sf::Vector2i(x + xled,y),Block::BombRightMid());
-				if(xled = range)
+				if(xled == range)
 					Map::update(sf::Vector2i(x + xled,y),Block::BombRight1());
 			}
 		}
