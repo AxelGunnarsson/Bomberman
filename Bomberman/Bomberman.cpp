@@ -7,7 +7,6 @@
 #include "Map.h"
 #include <list>
 
-
 #include <SFML/Graphics.hpp>
 
 int main()
@@ -42,7 +41,6 @@ int main()
 		window.clear();
 
 		Map::draw(window);
-
 		Gubbe1.draw(window); 
 		Gubbe2.draw(window); 
 
