@@ -11,7 +11,7 @@ private:
 	enum Direction { Down , Left , Right , Up };
 	enum Walk { AllowedToWalk , NotAllowedToWalk, PowerUp1, PowerUp2 }; 
 	sf::Vector2i animationPos;
-	bool death;
+
 	float speed;
 	int boxX,boxx,boxY,boxy,maxAntalBomber,range, antalBomber;
 	sf::Keyboard::Key up,down,left,right,placeBomb;
@@ -22,8 +22,7 @@ private:
 
 
 public:
-
-
+	bool Alive;
 	Player(sf::Vector2f,std::string&,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key);
 	~Player(void);
 	void Player::update();

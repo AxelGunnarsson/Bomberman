@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
 
-
 Player::Player(sf::Vector2f position, std::string& bild, sf::Keyboard::Key uppK,sf::Keyboard::Key nerK,sf::Keyboard::Key leftK,sf::Keyboard::Key rightK,sf::Keyboard::Key bombK)	// Bomb - Exlopde - Position om block sprängs / Player dör
 {
 	up = uppK;
@@ -9,9 +8,9 @@ Player::Player(sf::Vector2f position, std::string& bild, sf::Keyboard::Key uppK,
 	left = leftK;
 	right = rightK;
 	placeBomb = bombK;
-	antalBomber=0;
-	maxAntalBomber=1;
-	death = false;
+	antalBomber = 0;
+	maxAntalBomber = 1;
+	Alive = true;
 	range = 2;
 	pos = position;
 	animationPos = sf::Vector2i(0,Down);
@@ -31,12 +30,12 @@ Player::~Player(void)
 
 void Player::update() 
 {
-	if(!death)
+	if(Alive)
 	{
 		if(Map::getBlock(sf::Vector2i(((int)pos.x+15)/30,((int)pos.y+15)/30)) != Block::Ground() &&
 			Map::getBlock(sf::Vector2i(((int)pos.x+15)/30,((int)pos.y+15)/30)) != Block::Bomb())
 		{
-			death=true;
+			Alive=false;
 			Map::newMap();
 		}
 
@@ -160,15 +159,18 @@ int Player::collision(sf::Vector2f Pos)
 void Player::draw(sf::RenderTarget& tgt) 
 {
 	tgt.draw(m_sprite);
-	for(int i = 0 ; i < antalBomber; i++)
-	{	
-		bombList[i].draw(tgt);
-		if(bombList[i].exploded() == true)
-		{
-			antalBomber --;
-			for(int d = i; d < antalBomber; d++)
+	if(antalBomber < 20)
+	{
+		for(int banan = 0 ; banan < antalBomber; banan++)
+		{	
+			bombList[banan].draw(tgt);
+			if(bombList[banan].exploded() == true)
 			{
-				bombList[d] = bombList[d+1];
+				antalBomber --;
+				for(int d = banan; d < antalBomber; d++)
+				{
+					bombList[d] = bombList[d+1];
+				}
 			}
 		}
 	}
