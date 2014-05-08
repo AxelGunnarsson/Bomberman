@@ -14,19 +14,20 @@ std::list<sf::Vector2i> GubbePos;
 void initGame()
 {
 	Map::load();
-	Spelare.push_back(Player(sf::Vector2f(32,32),std::string("PlayerOne.png"),sf::Keyboard::W,sf::Keyboard::S,sf::Keyboard::A,sf::Keyboard::D,sf::Keyboard::Num1));
-	Spelare.push_back(Player(sf::Vector2f(332,332),std::string("PlayerTwo.png"),sf::Keyboard::Up,sf::Keyboard::Down,sf::Keyboard::Left,sf::Keyboard::Right,sf::Keyboard::Numpad1));
+	//Spelare.push_back(Player(sf::Vector2f(32,32),std::string("PlayerOne.png"),sf::Keyboard::W,sf::Keyboard::S,sf::Keyboard::A,sf::Keyboard::D,sf::Keyboard::Num1));
+	Spelare.push_back(Player(sf::Vector2f(332,332),std::string("PlayerOne.png"),sf::Keyboard::Up,sf::Keyboard::Down,sf::Keyboard::Left,sf::Keyboard::Right,sf::Keyboard::Numpad1));
 }
-	
+
 void Game(sf::RenderWindow& window)
 {
+	Player Gubbe1 = Player(sf::Vector2f(32,32),std::string("PlayerOne.png"),sf::Keyboard::W,sf::Keyboard::S,sf::Keyboard::A,sf::Keyboard::D,sf::Keyboard::Num1);
 	while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
 			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
-                window.close();
+				window.close();
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::N))
 			{
 				for each (Player gubbe in Spelare)
@@ -35,7 +36,7 @@ void Game(sf::RenderWindow& window)
 				}
 				Map::newMap(GubbePos);
 			}
-        }
+		}
 
 		window.clear();
 		Map::draw(window);
@@ -43,12 +44,15 @@ void Game(sf::RenderWindow& window)
 		for each (Player gubbe in Spelare)
 		{
 			gubbe.update();
+		}
+		Gubbe1.update();
+		for each (Player gubbe in Spelare)
+		{
 			gubbe.draw(window); 
 		}
-
-
-       window.display();
-    }
+		Gubbe1.draw(window);
+		window.display();
+	}
 }
 
 int main()
@@ -58,6 +62,6 @@ int main()
 
 	initGame();
 	Game(window);
-    return 0;
+	return 0;
 }
 
