@@ -9,6 +9,7 @@
 #include <list>
 
 std::list<Player> Spelare;
+std::list<sf::Vector2i> GubbePos;
 
 void initGame()
 {
@@ -16,28 +17,38 @@ void initGame()
 	Spelare.push_back(Player(sf::Vector2f(32,32),std::string("PlayerOne.png"),sf::Keyboard::W,sf::Keyboard::S,sf::Keyboard::A,sf::Keyboard::D,sf::Keyboard::Num1));
 	Spelare.push_back(Player(sf::Vector2f(332,332),std::string("PlayerTwo.png"),sf::Keyboard::Up,sf::Keyboard::Down,sf::Keyboard::Left,sf::Keyboard::Right,sf::Keyboard::Numpad1));
 }
-
+	
 void Game(sf::RenderWindow& window)
 {
 	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
 			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
-				window.close();
-		}
+                window.close();
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::N))
+			{
+				for each (Player gubbe in Spelare)
+				{
+					GubbePos.push_back(gubbe.getPos());
+				}
+				Map::newMap(GubbePos);
+			}
+        }
 
 		window.clear();
 		Map::draw(window);
-		for each (Player Gubbe in Spelare)
+
+		for each (Player gubbe in Spelare)
 		{
-			Gubbe.update();
-			Gubbe.draw(window);
+			gubbe.update();
+			gubbe.draw(window); 
 		}
 
-		window.display();
-	}
+
+       window.display();
+    }
 }
 
 int main()
@@ -47,6 +58,6 @@ int main()
 
 	initGame();
 	Game(window);
-	return 0;
+    return 0;
 }
 

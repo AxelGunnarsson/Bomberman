@@ -36,7 +36,6 @@ void Player::update()
 			Map::getBlock(sf::Vector2i(((int)pos.x+15)/30,((int)pos.y+15)/30)) != Block::Bomb())
 		{
 			Alive=false;
-			Map::newMap();
 		}
 
 		if(sf::Keyboard::isKeyPressed(right))
@@ -174,4 +173,11 @@ void Player::draw(sf::RenderTarget& tgt)
 			}
 		}
 	}
+}
+
+sf::Vector2i Player::getPos()
+{
+	int x = ((int)pos.x + 15 ) / 30;
+	int y = ((int)pos.y + 15 ) / 30;
+	return sf::Vector2i(x,y);
 }
