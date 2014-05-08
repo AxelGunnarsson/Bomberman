@@ -28,5 +28,6 @@ public:
 	void Player::update();
 	void Player::draw(sf::RenderTarget& tgt);
 	int Player::collision(sf::Vector2f);
+	sf::Vector2i Player::getPos();
 };
 

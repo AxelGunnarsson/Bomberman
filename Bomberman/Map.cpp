@@ -6,6 +6,8 @@
 #include <fstream>
 #include <cctype>
 #include <string>
+#include <list>
+
 using namespace std;
 
 static sf::Texture BoxTextur;
@@ -73,15 +75,36 @@ sf::Vector2i Map::getBlock(sf::Vector2i pos)
 	return mapMat[(int)pos.x][(int)pos.y];
 }
 
-void Map::newMap()
+void Map::newMap(list<sf::Vector2i> posList)
 {
+	bool all = true;
 	for (int x = 1; x < 12; x++)
 	{
 		for (int y = 1; y < 12; y++)
 		{
-			int random = rand() % 5;
-			if(getBlock(sf::Vector2i(x,y)) != Block::Wall() && random == 2)
-				update(sf::Vector2i(x,y),Block::Box());
+			if(getBlock(sf::Vector2i(x,y)) != Block::Wall())
+				update(sf::Vector2i(x,y),Block::Ground());
+			for each (sf::Vector2i pos in posList)
+			{
+				for(int x2 = -1; x2 < 2; x2++)
+				{
+					for(int y2 = -1; y2 < 2; y2++)
+					{
+						if(sf::Vector2i(x+x2,y+y2) == pos)
+						{
+							all = false;
+						}
+					}
+				}
+			}
+			if(all == true)
+			{
+				int random = rand() % 2;
+				if(getBlock(sf::Vector2i(x,y)) != Block::Wall() && random == 0)
+					update(sf::Vector2i(x,y),Block::Box());
+			}
+			all = true;
+
 		}
 	}
 }
