@@ -160,13 +160,13 @@ void Player::draw(sf::RenderTarget& tgt)
 	tgt.draw(m_sprite);
 	if(antalBomber < 20)
 	{
-		for(int banan = 0 ; banan < antalBomber; banan++)
+		for(int bananen = 0 ; bananen < antalBomber; bananen++)
 		{	
-			bombList[banan].draw(tgt);
-			if(bombList[banan].exploded() == true)
+			bombList[bananen].draw(tgt);
+			if(bombList[bananen].exploded() == true)
 			{
 				antalBomber --;
-				for(int d = banan; d < antalBomber; d++)
+				for(int d = bananen; d < antalBomber; d++)
 				{
 					bombList[d] = bombList[d+1];
 				}

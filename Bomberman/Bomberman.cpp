@@ -8,19 +8,17 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 
-std::list<Player> Spelare;
 std::list<sf::Vector2i> GubbePos;
 
 void initGame()
 {
 	Map::load();
-	//Spelare.push_back(Player(sf::Vector2f(32,32),std::string("PlayerOne.png"),sf::Keyboard::W,sf::Keyboard::S,sf::Keyboard::A,sf::Keyboard::D,sf::Keyboard::Num1));
-	Spelare.push_back(Player(sf::Vector2f(332,332),std::string("PlayerOne.png"),sf::Keyboard::Up,sf::Keyboard::Down,sf::Keyboard::Left,sf::Keyboard::Right,sf::Keyboard::Numpad1));
 }
 
 void Game(sf::RenderWindow& window)
 {
 	Player Gubbe1 = Player(sf::Vector2f(32,32),std::string("PlayerOne.png"),sf::Keyboard::W,sf::Keyboard::S,sf::Keyboard::A,sf::Keyboard::D,sf::Keyboard::Num1);
+	Player Gubbe2 = Player(sf::Vector2f(332,332),std::string("PlayerTwo.png"),sf::Keyboard::Up,sf::Keyboard::Down,sf::Keyboard::Left,sf::Keyboard::Right,sf::Keyboard::Numpad1);
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -30,10 +28,8 @@ void Game(sf::RenderWindow& window)
 				window.close();
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::N))
 			{
-				for each (Player gubbe in Spelare)
-				{
-					GubbePos.push_back(gubbe.getPos());
-				}
+				GubbePos.push_back(Gubbe1.getPos());
+				GubbePos.push_back(Gubbe2.getPos());
 				Map::newMap(GubbePos);
 			}
 		}
@@ -41,16 +37,11 @@ void Game(sf::RenderWindow& window)
 		window.clear();
 		Map::draw(window);
 
-		for each (Player gubbe in Spelare)
-		{
-			gubbe.update();
-		}
 		Gubbe1.update();
-		for each (Player gubbe in Spelare)
-		{
-			gubbe.draw(window); 
-		}
 		Gubbe1.draw(window);
+		Gubbe2.update();
+		Gubbe2.draw(window);
+
 		window.display();
 	}
 }
