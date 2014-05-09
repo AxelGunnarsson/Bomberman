@@ -11,6 +11,8 @@ private:
 	enum Direction { Down , Left , Right , Up };
 	enum Walk { AllowedToWalk , NotAllowedToWalk, PowerUp1, PowerUp2 }; 
 	sf::Vector2i animationPos;
+	bool onBombOnce;
+	int bombCollisionCounter;
 
 	float speed;
 	int boxX,boxx,boxY,boxy,maxAntalBomber,range, antalBomber;
@@ -19,6 +21,8 @@ private:
 	sf::Vector2f pos;
 	sf::Vector2f staticPos;
 	sf::Sprite m_sprite;
+	sf::Texture death_texture;
+	sf::Sprite death_sprite;
 	Bomb bombList[20];	
 
 

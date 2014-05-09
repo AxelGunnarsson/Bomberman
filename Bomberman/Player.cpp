@@ -22,9 +22,14 @@ Player::Player(sf::Vector2f position, std::string& bild, sf::Keyboard::Key uppK,
 	boxx = 11;
 	boxY = 22;
 	boxy = 11;
+
 	m_texture.loadFromFile(bild);
 	m_sprite.setTexture(m_texture);
 	m_sprite.setPosition(pos.x,pos.y);
+
+	death_texture.loadFromFile("Death.png");
+	death_sprite.setTexture(death_texture);
+	death_sprite.setPosition(staticPos.x - 150, staticPos.y - 150);
 }	
 
 Player::~Player(void)
@@ -125,6 +130,8 @@ void Player::update()
 			{
 				bombList[antalBomber] = Bomb(sf::Vector2i(((int)pos.x + 15) / 30,((int)pos.y + 15) /30),range);
 				antalBomber+=1;
+				onBombOnce = true;
+				bombCollisionCounter = 0;
 			}
 		}
 	}
@@ -147,35 +154,74 @@ int Player::collision(sf::Vector2f Pos)
 	sf::Vector2i pos = sf::Vector2i((int)Pos.x / 30, (int)Pos.y / 30);
 
 	if(Map::getBlock(pos) == Block::Ground())
+	{
+		if( bombCollisionCounter == 20)
+			onBombOnce = false;
+		bombCollisionCounter++;
 		return AllowedToWalk;
+	}
 	else if(Map::getBlock(pos) == Block::Bomb())
-		return AllowedToWalk;
+	{
+		if(onBombOnce == true)
+			return AllowedToWalk;
+		else AllowedToWalk;
+	}
 	else if(Map::getBlock(pos) == Block::PowerUp1())
+	{
+		if( bombCollisionCounter == 20)
+			onBombOnce = false;
+		bombCollisionCounter++;
 		return PowerUp1;
+	}	
 	else if(Map::getBlock(pos) == Block::PowerUp2())
+	{
+		if( bombCollisionCounter == 20)
+			onBombOnce = false;
+		bombCollisionCounter++;
 		return PowerUp2;
+	}
+	else if(Map::getBlock(pos) == Block::Wall())
+	{
+		if( bombCollisionCounter == 20)
+			onBombOnce = false;
+		bombCollisionCounter++;
+		return NotAllowedToWalk;
+	}
+	else if(Map::getBlock(pos) == Block::Box())
+	{
+		if( bombCollisionCounter == 20)
+			onBombOnce = false;
+		bombCollisionCounter++;
+		return NotAllowedToWalk;
+	}
 	return NotAllowedToWalk;
 
 }
 
 void Player::draw(sf::RenderTarget& tgt) 
 {
-	tgt.draw(m_sprite);
-	if(antalBomber < 20)
+	if(Alive)
 	{
-		for(int bananen = 0 ; bananen < antalBomber; bananen++)
-		{	
-			bombList[bananen].draw(tgt);
-			if(bombList[bananen].exploded() == true)
+		tgt.draw(m_sprite);
+	}
+	else
+	{
+		tgt.draw(death_sprite);
+	}
+
+	for(int Counter = 0 ; Counter < antalBomber; Counter++)
+	{	
+		bombList[Counter].draw(tgt);
+		if(bombList[Counter].exploded() == true)
+		{
+			antalBomber --;
+			for(int d = Counter; d < antalBomber; d++)
 			{
-				antalBomber --;
-				for(int d = bananen; d < antalBomber; d++)
-				{
-					bombList[d] = bombList[d+1];
-				}
+				bombList[d] = bombList[d+1];
 			}
 		}
 	}
+
 }
 
 sf::Vector2f Player::getPos()
