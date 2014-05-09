@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Player.h"
 
+Player::Player(){};
+
 Player::Player(sf::Vector2f position, std::string& bild, sf::Keyboard::Key uppK,sf::Keyboard::Key nerK,sf::Keyboard::Key leftK,sf::Keyboard::Key rightK,sf::Keyboard::Key bombK)	// Bomb - Exlopde - Position om block sprängs / Player dör
 {
 	up = uppK;
@@ -13,6 +15,7 @@ Player::Player(sf::Vector2f position, std::string& bild, sf::Keyboard::Key uppK,
 	Alive = true;
 	range = 2;
 	pos = position;
+	staticPos = position;
 	animationPos = sf::Vector2i(0,Down);
 	speed = 2;
 	boxX = 22;
@@ -136,7 +139,7 @@ void Player::update()
 		animationPos.x = 0;
 
 	m_sprite.setTextureRect(sf::IntRect((animationPos.x / 6) * 32, animationPos.y * 32,32,32));
-	m_sprite.setPosition(pos.x,pos.y);
+	m_sprite.setPosition(staticPos.x,staticPos.y);
 }
 
 int Player::collision(sf::Vector2f Pos)
@@ -175,9 +178,13 @@ void Player::draw(sf::RenderTarget& tgt)
 	}
 }
 
-sf::Vector2i Player::getPos()
+sf::Vector2f Player::getPos()
 {
-	int x = ((int)pos.x + 15 ) / 30;
-	int y = ((int)pos.y + 15 ) / 30;
-	return sf::Vector2i(x,y);
+	return pos;
 }
+
+sf::Vector2f Player::getStaticPos()
+{
+	return staticPos;
+}
+

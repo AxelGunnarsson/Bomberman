@@ -17,17 +17,20 @@ private:
 	sf::Keyboard::Key up,down,left,right,placeBomb;
 	sf::Texture m_texture;
 	sf::Vector2f pos;
+	sf::Vector2f staticPos;
 	sf::Sprite m_sprite;
 	Bomb bombList[20];	
 
 
 public:
 	bool Alive;
+	Player();
 	Player(sf::Vector2f,std::string&,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key);
 	~Player(void);
 	void Player::update();
 	void Player::draw(sf::RenderTarget& tgt);
 	int Player::collision(sf::Vector2f);
-	sf::Vector2i Player::getPos();
+	sf::Vector2f Player::getPos();
+	sf::Vector2f Player::getStaticPos();
 };
 
