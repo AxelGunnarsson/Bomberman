@@ -10,8 +10,8 @@
 #include "Playerdummy.h"
 
 std::list<sf::Vector2f> GubbePos;
-Player Gubbe1 = Player(sf::Vector2f(150,150),std::string("PlayerOne.png"),sf::Keyboard::W,sf::Keyboard::S,sf::Keyboard::A,sf::Keyboard::D,sf::Keyboard::Num1);
-Player Gubbe2 = Player(sf::Vector2f(451,150),std::string("PlayerTwo.png"),sf::Keyboard::Up,sf::Keyboard::Down,sf::Keyboard::Left,sf::Keyboard::Right,sf::Keyboard::Numpad1);
+Player Gubbe1 = Player(sf::Vector2f(180,150),std::string("PlayerOne.png"),sf::Keyboard::W,sf::Keyboard::S,sf::Keyboard::A,sf::Keyboard::D,sf::Keyboard::Num1);
+Player Gubbe2 = Player(sf::Vector2f(541,150),std::string("PlayerTwo.png"),sf::Keyboard::Up,sf::Keyboard::Down,sf::Keyboard::Left,sf::Keyboard::Right,sf::Keyboard::Numpad1);
 //Player Gubbe3 = Player(sf::Vector2f(150,451),std::string("PlayerThree.png"),sf::Keyboard::Up,sf::Keyboard::Down,sf::Keyboard::Left,sf::Keyboard::Right,sf::Keyboard::Numpad1);
 Playerdummy Gubbe12 = Playerdummy(Gubbe1);
 Playerdummy Gubbe21 = Playerdummy(Gubbe2);
@@ -61,7 +61,7 @@ void Game(sf::RenderWindow& window)
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(690, 690), "Bomberman");
+	sf::RenderWindow window(sf::VideoMode(790, 690), "Bomberman");
 	window.setFramerateLimit(60);
 
 	Game(window);

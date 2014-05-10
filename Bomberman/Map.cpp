@@ -27,32 +27,32 @@ void Map::draw(sf::RenderTarget& tgt,sf::Vector2f playerPos,sf::Vector2f playerS
 			Box.setPosition((float)i * 30 - playerPos.x + playerStaticPos.x, (float)j * 30 - playerPos.y + playerStaticPos.y);
 			Box.setTextureRect(sf::IntRect(mapMat[i][j].x * 30, mapMat[i][j].y * 30, 30, 30));
 
-			int boundryRight = playerStaticPos.x + 150 - (int)Box.getPosition().x;
-			int boundryLeft = playerStaticPos.x - 150 - (int)Box.getPosition().x;
+			int boundryRight = playerStaticPos.x + 180 - (int)Box.getPosition().x;
+			int boundryLeft = playerStaticPos.x - 180 - (int)Box.getPosition().x;
 			int boundryUp = playerStaticPos.y - 150 - (int)Box.getPosition().y;
-			int boundryDown = playerStaticPos.y + 150 - (int)Box.getPosition().y;
+			int boundryDown = playerStaticPos.y + 180 - (int)Box.getPosition().y;
 
 			int leftx = mapMat[i][j].x * 30;
 			int lefty = mapMat[i][j].y * 30;
 			int rightx = 30;
 			int righty = 30;
 
-			if(Box.getPosition().x > playerStaticPos.x + 150 || Box.getPosition().y > playerStaticPos.y + 150)
+			if(Box.getPosition().x > playerStaticPos.x + 180 || Box.getPosition().y > playerStaticPos.y + 180)
 			{
 				break;
 			}
 
-			if(Box.getPosition().x > playerStaticPos.x + 120)
+			if(Box.getPosition().x > playerStaticPos.x + 150)
 			{				
 				rightx = boundryRight;
 			}
-			if(Box.getPosition().y > playerStaticPos.y + 120)
+			if(Box.getPosition().y > playerStaticPos.y + 150)
 			{
 				righty = boundryDown;
 			}
-			if(Box.getPosition().x < playerStaticPos.x - 150)
+			if(Box.getPosition().x < playerStaticPos.x - 180)
 			{
-				Box.setPosition(playerStaticPos.x - 150,Box.getPosition().y);
+				Box.setPosition(playerStaticPos.x - 180,Box.getPosition().y);
 				leftx = mapMat[i][j].x * 30 + boundryLeft;
 			}
 			if(Box.getPosition().y < playerStaticPos.y - 150)
