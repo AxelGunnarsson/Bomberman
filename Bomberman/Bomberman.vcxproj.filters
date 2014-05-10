@@ -39,6 +39,9 @@
     <ClInclude Include="Stats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Playerdummy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -60,6 +63,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Stats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Playerdummy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

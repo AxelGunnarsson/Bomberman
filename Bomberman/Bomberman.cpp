@@ -7,12 +7,14 @@
 #include "Map.h"
 #include <SFML/Graphics.hpp>
 #include <list>
+#include "Playerdummy.h"
 
 std::list<sf::Vector2f> GubbePos;
 Player Gubbe1 = Player(sf::Vector2f(150,150),std::string("PlayerOne.png"),sf::Keyboard::W,sf::Keyboard::S,sf::Keyboard::A,sf::Keyboard::D,sf::Keyboard::Num1);
 Player Gubbe2 = Player(sf::Vector2f(451,150),std::string("PlayerTwo.png"),sf::Keyboard::Up,sf::Keyboard::Down,sf::Keyboard::Left,sf::Keyboard::Right,sf::Keyboard::Numpad1);
 //Player Gubbe3 = Player(sf::Vector2f(150,451),std::string("PlayerThree.png"),sf::Keyboard::Up,sf::Keyboard::Down,sf::Keyboard::Left,sf::Keyboard::Right,sf::Keyboard::Numpad1);
-
+Playerdummy Gubbe12 = Playerdummy(Gubbe1);
+Playerdummy Gubbe21 = Playerdummy(Gubbe2);
 void initGame()
 {
 	Map::load();
@@ -42,8 +44,15 @@ void Game(sf::RenderWindow& window)
 		Gubbe1.draw(window);
 		Gubbe2.update();
 		Gubbe2.draw(window);
+
 		//Gubbe3.update();
 		//Gubbe3.draw(window);
+
+		Gubbe12.draw(window);
+		Gubbe12.update(Gubbe1.getPos(),Gubbe1.getTextureRect(),Gubbe2.getStaticPos(),Gubbe2.getPos());
+
+		Gubbe21.draw(window);
+		Gubbe21.update(Gubbe2.getPos(),Gubbe2.getTextureRect(),Gubbe1.getStaticPos(),Gubbe1.getPos());
 
 		window.display();
 	}

@@ -144,8 +144,9 @@ void Player::update()
 
 	if(animationPos.x >= 12)
 		animationPos.x = 0;
-
 	m_sprite.setTextureRect(sf::IntRect((animationPos.x / 6) * 32, animationPos.y * 32,32,32));
+	if(!Alive)
+		m_sprite.setTextureRect(sf::IntRect(0,0,0,0));
 	m_sprite.setPosition(staticPos.x,staticPos.y);
 }
 
@@ -234,3 +235,12 @@ sf::Vector2f Player::getStaticPos()
 	return staticPos;
 }
 
+sf::Sprite Player::getSprite()
+{
+	return m_sprite;
+}
+
+sf::IntRect Player::getTextureRect()
+{
+	return m_sprite.getTextureRect();
+}

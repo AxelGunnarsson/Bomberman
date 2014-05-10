@@ -36,5 +36,7 @@ public:
 	int Player::collision(sf::Vector2f);
 	sf::Vector2f Player::getPos();
 	sf::Vector2f Player::getStaticPos();
+	sf::Sprite Player::getSprite();
+	sf::IntRect Player::getTextureRect();
 };
 
