@@ -21,11 +21,12 @@ void initGame()
 	GubbePos.push_back(Gubbe1.getPos());
 	GubbePos.push_back(Gubbe2.getPos());
 	//GubbePos.push_back(Gubbe3.getPos());
-	Map::newMap(GubbePos);
+	//Map::newMap(GubbePos);
 }
 
 void Game(sf::RenderWindow& window)
 {
+	initGame();
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -63,7 +64,6 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(690, 690), "Bomberman");
 	window.setFramerateLimit(60);
 
-	initGame();
 	Game(window);
 	return 0;
 }
