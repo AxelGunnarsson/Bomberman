@@ -65,6 +65,7 @@ void Map::draw(sf::RenderTarget& tgt,sf::Vector2f playerPos,sf::Vector2f playerS
 
 		}
 	}
+
 }
 void Map::update(sf::Vector2i pos,sf::Vector2i type)
 {
