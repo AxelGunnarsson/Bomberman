@@ -29,7 +29,7 @@ Player::Player(sf::Vector2f position, std::string& bild, sf::Keyboard::Key uppK,
 
 	death_texture.loadFromFile("Death.png");
 	death_sprite.setTexture(death_texture);
-	death_sprite.setPosition(staticPos.x - 150, staticPos.y - 150);
+	death_sprite.setPosition(staticPos.x - 180, staticPos.y - 150);
 }	
 
 Player::~Player(void)

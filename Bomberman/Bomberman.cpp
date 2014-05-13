@@ -15,13 +15,14 @@ Player Gubbe2 = Player(sf::Vector2f(541,150),std::string("PlayerTwo.png"),sf::Ke
 //Player Gubbe3 = Player(sf::Vector2f(150,451),std::string("PlayerThree.png"),sf::Keyboard::Up,sf::Keyboard::Down,sf::Keyboard::Left,sf::Keyboard::Right,sf::Keyboard::Numpad1);
 Playerdummy Gubbe12 = Playerdummy(Gubbe1);
 Playerdummy Gubbe21 = Playerdummy(Gubbe2);
+
 void initGame()
 {
 	Map::load();
 	GubbePos.push_back(Gubbe1.getPos());
 	GubbePos.push_back(Gubbe2.getPos());
 	//GubbePos.push_back(Gubbe3.getPos());
-	//Map::newMap(GubbePos);
+	Map::newMap(GubbePos);
 }
 
 void Game(sf::RenderWindow& window)
