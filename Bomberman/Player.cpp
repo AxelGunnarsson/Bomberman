@@ -195,7 +195,7 @@ int Player::collision(sf::Vector2f Pos)
 		bombCollisionCounter++;
 		return NotAllowedToWalk;
 	}
-	return NotAllowedToWalk;
+	return AllowedToWalk;
 
 }
 
