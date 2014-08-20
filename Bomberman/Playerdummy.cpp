@@ -35,6 +35,8 @@ void Playerdummy::update(sf::Vector2f originalPlayerPos,sf::IntRect textureRect,
 	{
 		left = textureRect.left;
 		width = textureRect.width - (32 - ( actualPos.x + 210 - originalPlayerPos.x));
+		if(width > 32)
+			width = 32;
 		dummy_sprite.setTextureRect(sf::IntRect(left,textureRect.top,width,textureRect.height));
 	}
 
