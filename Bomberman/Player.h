@@ -7,17 +7,16 @@
 class Player
 {
 private:
-	
+
 	enum Direction { Down , Left , Right , Up };
 	enum Walk { AllowedToWalk , NotAllowedToWalk, PowerUp1, PowerUp2 }; 
 	sf::Vector2i animationPos;
 	bool onBombOnce;
 	int bombCollisionCounter;
-
+	sf::Texture m_texture;
 	float speed;
 	int boxX,boxx,boxY,boxy,maxAntalBomber,range, antalBomber;
 	sf::Keyboard::Key up,down,left,right,placeBomb;
-	sf::Texture m_texture;
 	sf::Vector2f pos;
 	sf::Vector2f staticPos;
 	sf::Sprite m_sprite;
@@ -29,7 +28,7 @@ private:
 public:
 	bool Alive;
 	Player();
-	Player(sf::Vector2f,std::string&,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key);
+	Player(sf::Vector2f,sf::Vector2f,std::string&,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key,sf::Keyboard::Key);
 	~Player(void);
 	void Player::update();
 	void Player::draw(sf::RenderTarget& tgt);

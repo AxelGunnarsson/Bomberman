@@ -2,14 +2,14 @@
 #include "Player.h"
 class Playerdummy
 {
-	Player copyFrom;
+	Player &copyFrom;
 	sf::Vector2f pos;
 	sf::Sprite dummy_sprite;
 	
 public:
-	Playerdummy(Player);
+	Playerdummy(Player&);
 	void draw(sf::RenderTarget&);
-	void update(sf::Vector2f,sf::IntRect,sf::Vector2f,sf::Vector2f);
+	void update(sf::Vector2f,sf::Vector2f);
 	~Playerdummy(void);
 };
 
