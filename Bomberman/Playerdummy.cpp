@@ -18,7 +18,7 @@ void Playerdummy::update(sf::Vector2f originalPlayerPos,sf::IntRect textureRect,
 	correctedPos = sf::Vector2f(originalPlayerPos - ( actualPos - centerPos));
 	dummy_sprite.setPosition(correctedPos);
 
-	int left, width, top, height;
+	int left, width = 0, top, height;
 
 	if(correctedPos.x < centerPos.x - 210 || correctedPos.x > centerPos.x + 210 || correctedPos.y < centerPos.y - 180 || correctedPos.y > centerPos.y + 180)
 		dummy_sprite.setTextureRect(sf::IntRect(0,0,0,0));	//invis
