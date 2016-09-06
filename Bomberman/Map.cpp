@@ -27,10 +27,10 @@ void Map::draw(sf::RenderTarget& tgt,sf::Vector2f playerPos,sf::Vector2f playerS
 			Box.setPosition((float)i * 30 - playerPos.x + playerStaticPos.x, (float)j * 30 - playerPos.y + playerStaticPos.y);
 			Box.setTextureRect(sf::IntRect(mapMat[i][j].x * 30, mapMat[i][j].y * 30, 30, 30));
 
-			int boundryRight = playerStaticPos.x + 210 - (int)Box.getPosition().x;
-			int boundryLeft = playerStaticPos.x - 180 - (int)Box.getPosition().x;
-			int boundryUp = playerStaticPos.y - 150 - (int)Box.getPosition().y;
-			int boundryDown = playerStaticPos.y + 180 - (int)Box.getPosition().y;
+			int boundryRight = (int)playerStaticPos.x + 210 - (int)Box.getPosition().x;
+			int boundryLeft = (int)playerStaticPos.x - 180 - (int)Box.getPosition().x;
+			int boundryUp = (int)playerStaticPos.y - 150 - (int)Box.getPosition().y;
+			int boundryDown = (int)playerStaticPos.y + 180 - (int)Box.getPosition().y;
 
 			int leftx = mapMat[i][j].x * 30;
 			int lefty = mapMat[i][j].y * 30;

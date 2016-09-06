@@ -3,7 +3,7 @@
 
 Player::Player(){};
 
-Player::Player(sf::Vector2f position, std::string& bild, sf::Keyboard::Key uppK,sf::Keyboard::Key nerK,sf::Keyboard::Key leftK,sf::Keyboard::Key rightK,sf::Keyboard::Key bombK)	// Bomb - Exlopde - Position om block sprängs / Player dör
+Player::Player(sf::Vector2f picturePosition,sf::Vector2f position, std::string& bild, sf::Keyboard::Key uppK,sf::Keyboard::Key nerK,sf::Keyboard::Key leftK,sf::Keyboard::Key rightK,sf::Keyboard::Key bombK)	// Bomb - Exlopde - Position om block sprängs / Player dör
 {
 	up = uppK;
 	down = nerK;
@@ -15,7 +15,7 @@ Player::Player(sf::Vector2f position, std::string& bild, sf::Keyboard::Key uppK,
 	Alive = true;
 	range = 2;
 	pos = position;
-	staticPos = position;
+	staticPos = picturePosition;
 	animationPos = sf::Vector2i(0,Down);
 	speed = 2;
 	boxX = 22;
@@ -201,6 +201,7 @@ int Player::collision(sf::Vector2f Pos)
 
 void Player::draw(sf::RenderTarget& tgt) 
 {
+	m_sprite.setTexture(m_texture);
 	if(Alive)
 	{
 		tgt.draw(m_sprite);
